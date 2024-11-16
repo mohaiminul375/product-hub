@@ -11,32 +11,29 @@ const Home = () => {
   console.log(category);
   // get data
   const productData = generateProducts(12);
-  //   console.log(productData);
+ 
   useEffect(() => {
-    // Set loading to true before filtering
+
     setLoading(true);
 
     let filteredProducts = productData;
 
-    // Apply category filter if category is selected
     if (category) {
       filteredProducts = filteredProducts.filter(
         (product) => product.category === category
       );
     }
 
-    // Apply search filter if search term is provided
     if (search) {
       filteredProducts = filteredProducts.filter((product) =>
         product.name.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    // Set filtered products after a delay (simulating loading)
     setTimeout(() => {
-      setProducts(filteredProducts); // Set filtered products to state
-      setLoading(false); // Set loading to false after filtering is complete
-    }, 500); // Optional: Simulate a delay to show loading (500ms)
+      setProducts(filteredProducts);
+      setLoading(false);
+    }, 500);
   }, [category, search]);
 
   //   handle Search
@@ -52,12 +49,13 @@ const Home = () => {
     setSearch("");
   };
   if (loading) {
-    return <div className="flex justify-center items-center">
-    <ClockLoader color="#1E99F5"/>
-   </div>;
+    return (
+      <div className="flex justify-center items-center">
+        <ClockLoader color="#1E99F5" />
+      </div>
+    );
   }
   return (
-    
     <section className="mt-10">
       {/* filter and sorting */}
       <div className="my-10 px-4 md:w-2/3 mx-auto rounded-md">
@@ -98,13 +96,13 @@ const Home = () => {
           </div>
         </div>
       </div>
-{/* error */}
+      {/* error */}
 
-{
-    products.length === 0&& <div>
-        <p className="text-center text-red-700 text-2xl">No Product Found</p>
-    </div>
-}
+      {products.length === 0 && (
+        <div>
+          <p className="text-center text-red-700 text-2xl">No Product Found</p>
+        </div>
+      )}
       {/* products */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {products.map((product) => (
