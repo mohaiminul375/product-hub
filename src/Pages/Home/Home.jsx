@@ -1,37 +1,74 @@
 import { useEffect, useState } from "react";
 import { generateProducts } from "../../data/productsData";
 import ProductCard from "../../Components/Shared/Home/ProductCard";
+import { ClockLoader } from "react-spinners";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   console.log(category);
   // get data
   const productData = generateProducts(12);
   //   console.log(productData);
   useEffect(() => {
-    setProducts(productData);
-    if (category) {
-      const categoryFilter = productData.filter(
-        (product) => product.category == category
-      );
-      setProducts(categoryFilter);
-    }
-  }, [category]);
+    // Set loading to true before filtering
+    setLoading(true);
 
+    let filteredProducts = productData;
+
+    // Apply category filter if category is selected
+    if (category) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.category === category
+      );
+    }
+
+    // Apply search filter if search term is provided
+    if (search) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    // Set filtered products after a delay (simulating loading)
+    setTimeout(() => {
+      setProducts(filteredProducts); // Set filtered products to state
+      setLoading(false); // Set loading to false after filtering is complete
+    }, 500); // Optional: Simulate a delay to show loading (500ms)
+  }, [category, search]);
+
+  //   handle Search
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchValue = e.target.search.value;
+    console.log(searchValue);
+    setSearch(searchValue);
+  };
   //   reset form
   const handleReset = () => {
     setCategory("");
+    setSearch("");
   };
-
+  if (loading) {
+    return <div className="flex justify-center items-center">
+    <ClockLoader color="#1E99F5"/>
+   </div>;
+  }
   return (
+    
     <section className="mt-10">
       {/* filter and sorting */}
       <div className="my-10 px-4 md:w-2/3 mx-auto rounded-md">
         <div className="bg-base-100 border-2 shadow-2xl py-5 px-6 flex flex-wrap gap-4 items-center justify-center sm:justify-between">
           {/* Input Section */}
-          <div className="flex flex-wrap items-center gap-2 bg-gray-100 rounded-lg shadow-md w-full sm:w-auto">
+          <form
+            onSubmit={handleSearch}
+            className="flex flex-wrap items-center gap-2 bg-gray-100 rounded-lg shadow-md w-full sm:w-auto"
+          >
             <input
+              name="search"
               type="text"
               className="flex-grow p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
               placeholder="Search for a product"
@@ -39,7 +76,7 @@ const Home = () => {
             <button className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
               Search
             </button>
-          </div>
+          </form>
 
           {/* Dropdown Section */}
           <select
@@ -61,7 +98,13 @@ const Home = () => {
           </div>
         </div>
       </div>
+{/* error */}
 
+{
+    products.length === 0&& <div>
+        <p className="text-center text-red-700 text-2xl">No Product Found</p>
+    </div>
+}
       {/* products */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {products.map((product) => (
