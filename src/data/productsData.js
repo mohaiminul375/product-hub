@@ -4,7 +4,7 @@ export const generateProducts = (count = 10) => {
     const products = [];
     for (let i = 0; i < count; i++) {
       products.push({
-        // id: faker.datatype.uuid(),
+        _id: faker.string.uuid(),
         name: faker.commerce.productName(),
         price: faker.commerce.price(),
         description: faker.commerce.productDescription(),

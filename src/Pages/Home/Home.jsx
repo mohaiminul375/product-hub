@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { generateProducts } from "../../data/productsData";
+import ProductCard from "../../Components/Shared/Home/ProductCard";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -9,14 +10,21 @@ const Home = () => {
   useEffect(() => {
     setProducts(productData);
   }, []);
-  console.log(productData);
+//   console.log(productData);
 
   return (
-    <section>
-      <div></div>
+    <section className="mt-10">
+      <div className="my-5">
+
+      </div>
       {/* products */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+        {
+            products.map(product=><ProductCard
+            key={product._id}
+            product={product}
+            ></ProductCard>)
+        }
       </div>
     </section>
   );
