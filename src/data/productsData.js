@@ -9,7 +9,7 @@ export const generateProducts = (count = 10) => {
         price: faker.commerce.price(),
         description: faker.commerce.productDescription(),
         image: faker.image.avatarGitHub(),
-        category: faker.commerce.department(),
+        category: faker.commerce.department("Music"),
       });
     }
     return products;

@@ -1,5 +1,4 @@
 export default function ProductCard({ product }) {
-  console.log(product);
   const { _id, name, image, category, price,description } = product;
   return (
     <div className="card card-compact bg-base-100 md:w-72 shadow-xl">
