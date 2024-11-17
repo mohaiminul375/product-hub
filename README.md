@@ -39,8 +39,8 @@ Product Gallery Display website
   - Each product includes its name, description, category, and price.
 
 - **Filter and Sorting**:
- - Filter products by category
- - search products by name.
+  - Filter products by category
+  - search products by name.
 
 # npm and package
 
@@ -50,4 +50,5 @@ Product Gallery Display website
 - tailwind css
 - daisy ui
 - react-spinners
+- faker.js
 
