@@ -78,8 +78,9 @@ const Home = () => {
 
           {/* Dropdown Section */}
           <select
+          
             onChange={(e) => setCategory(e.target.value)}
-            className="select w-full md:w-1/3"
+            className="select select-bordered w-full md:w-1/3"
           >
             {products.map((product, idx) => (
               <option key={idx}>{product.category}</option>
@@ -103,6 +104,11 @@ const Home = () => {
           <p className="text-center text-red-700 text-2xl">No Product Found</p>
         </div>
       )}
+     
+     <div className="my-10">
+        <h1 className="text-center text-4xl font-bold underline">All Products</h1>
+     </div>
+
       {/* products */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {products.map((product) => (
