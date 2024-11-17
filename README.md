@@ -1,8 +1,53 @@
-# React + Vite
+# Product-Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Live URL: https://product-hub-roan.vercel.app
 
-Currently, two official plugins are available:
+- Random product Showcase site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Run the Project Locally
+
+1. **Clone the Repository**:
+
+   ```sh
+   git clone https://github.com/mohaiminul375/product-hub
+   cd product-hub
+   ```
+
+2. **Install Dependencies**:
+
+   ```sh
+   npm install
+   ```
+
+3. **Run the Application**:
+
+   ```sh
+   npm run dev -- --host
+   ```
+
+4. **Access the Site**: Open your browser and go to `http://localhost:5173/` or `http://192.168.1.12:5173/` from other devices on the same network to view the application.
+
+# website features
+
+Product Gallery Display website
+
+## Features
+
+- **Service Listing:**:
+
+  - Displays a list of random product in a grid layout format.
+  - Each product includes its name, description, category, and price.
+
+- **Filter and Sorting**:
+ - Filter products by category
+ - search products by name.
+
+# npm and package
+
+- vite
+- react
+- react-router dom
+- tailwind css
+- daisy ui
+- react-spinners
+
