@@ -33,7 +33,7 @@ const Home = () => {
     setTimeout(() => {
       setProducts(filteredProducts);
       setLoading(false);
-    }, 500);
+    }, 500); // 500 ms
   }, [category, search]);
 
   //   handle Search
@@ -48,6 +48,7 @@ const Home = () => {
     setCategory("");
     setSearch("");
   };
+  // loading
   if (loading) {
     return (
       <div className="flex justify-center items-center">
@@ -77,8 +78,7 @@ const Home = () => {
           </form>
 
           {/* Dropdown Section */}
-          <select
-          
+          <select 
             onChange={(e) => setCategory(e.target.value)}
             className="select select-bordered w-full md:w-1/3"
           >
@@ -98,7 +98,6 @@ const Home = () => {
         </div>
       </div>
       {/* error */}
-
       {products.length === 0 && (
         <div>
           <p className="text-center text-red-700 text-2xl">No Product Found</p>
